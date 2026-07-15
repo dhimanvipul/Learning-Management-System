@@ -1,0 +1,615 @@
+/* ================================================================
+   NAVBAR — uses CSS tokens, automatically switches light/dark
+   ================================================================ */
+
+.navbar {
+  height: var(--navbar-height);
+  background: var(--bg-navbar);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-btn {
+  display: none;
+  background: var(--icon-btn-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-btn-color);
+  transition:
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+.navbar-title h1 {
+  font-size: 20px;
+  letter-spacing: -0.3px;
+  color: var(--text-heading);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---- Navbar Search ---- */
+
+.navbar-search-container {
+  position: relative;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--search-bg);
+  border: 1px solid var(--search-border);
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  color: var(--search-icon-color);
+  min-width: 220px;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.navbar-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13.5px;
+  width: 100%;
+  color: var(--search-text);
+  transition: color var(--transition-theme);
+}
+
+.navbar-search input::placeholder {
+  color: var(--search-placeholder);
+}
+
+/* ---- Icon Buttons ---- */
+
+.icon-btn {
+  position: relative;
+  background: var(--icon-btn-bg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--icon-btn-color);
+  transition:
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+.icon-btn:hover {
+  background: var(--icon-btn-hover);
+}
+
+/* ---- Notification dot ---- */
+
+.notif-dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 50px;
+  background: #e53935;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-navbar);
+  line-height: 1;
+}
+
+/* ---- Profile section ---- */
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 14px;
+  border-left: 1px solid var(--navbar-profile-border);
+  cursor: pointer;
+  transition: border-color var(--transition-theme);
+}
+
+.profile-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5c542, #d4af37);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.navbar-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5c542, #d4af37);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.navbar-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color var(--transition-theme);
+}
+
+.profile-role {
+  font-size: 11px;
+  color: var(--text-secondary);
+  transition: color var(--transition-theme);
+}
+
+/* ---- Profile Card avatar (large) ---- */
+
+.profile-card .profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f5c542, #d4af37);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 auto 20px;
+}
+
+.profile-card .profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ================================================================
+   PROFILE DROPDOWN
+   ================================================================ */
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 62px;
+  right: 0;
+  width: 230px;
+  background: var(--bg-dropdown);
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  z-index: 999;
+  animation: profileFade 0.2s ease;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.profile-menu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.profile-menu-item svg {
+  color: var(--color-gold);
+}
+
+.profile-menu-item:hover {
+  background: var(--bg-hover);
+  color: var(--color-gold-dark);
+}
+
+body.dark-theme .profile-menu-item:hover {
+  color: var(--color-gold-light);
+}
+
+.profile-menu-item:hover svg {
+  transform: scale(1.08);
+}
+
+.profile-menu-item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+@keyframes profileFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================================
+   APPEARANCE TOGGLE (Light / Dark switch in dropdown)
+   ================================================================ */
+
+.profile-menu-item-nested {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid var(--border-color-light);
+}
+
+.menu-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.menu-item-header svg {
+  color: var(--color-gold);
+}
+
+.appearance-toggle-group {
+  display: flex;
+  background: var(--bg-muted);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--border-color);
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.appearance-toggle-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition-med);
+  text-align: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appearance-toggle-btn:hover:not(.active) {
+  background: var(--bg-hover);
+  color: var(--text-primary) !important;
+}
+
+.appearance-toggle-btn.active {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ================================================================
+   NOTIFICATION DROPDOWN
+   ================================================================ */
+
+.notification-wrapper {
+  position: relative;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  width: 360px;
+  max-height: 450px;
+  overflow-y: auto;
+  background: var(--notif-bg);
+  border-radius: 14px;
+  border: 1px solid var(--notif-border);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  animation: profileFade 0.25s ease;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--notif-header-border);
+}
+
+.notification-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.mark-read-btn {
+  border: none;
+  background: var(--color-gold);
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.mark-read-btn:hover {
+  background: var(--color-gold-dark);
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--notif-border);
+  transition: background-color 0.25s;
+  cursor: pointer;
+}
+
+.notification-item:hover {
+  background: var(--notif-item-hover);
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notif-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-hover);
+  color: var(--color-gold);
+  border: 1px solid var(--border-color-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.notif-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.notification-item p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.notification-item span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.notification-item small {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.notification-item.read {
+  opacity: 0.65;
+}
+
+.delete-btn {
+  border: none;
+  background: var(--delete-btn-bg);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #e53935;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: rgba(229, 57, 53, 0.15);
+  transform: scale(1.08);
+}
+
+.empty-notification {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Scrollbar inside notification dropdown */
+
+.notification-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-dropdown::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 20px;
+}
+
+.notification-dropdown::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+/* ================================================================
+   SEARCH RESULTS DROPDOWN
+   ================================================================ */
+
+.search-results-dropdown {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--bg-dropdown);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  padding: 8px 0;
+  animation: profileFade 0.2s ease;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.search-no-results {
+  padding: 16px;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+}
+
+.search-group {
+  margin-bottom: 8px;
+}
+
+.search-group:last-child {
+  margin-bottom: 0;
+}
+
+.search-group-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+body.dark-theme .search-group-title {
+  color: var(--color-gold-light);
+}
+
+.search-result-item {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.search-result-item:hover {
+  background: var(--bg-hover);
+}
+
+.search-item-primary {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.search-item-secondary {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 992px) {
+  .menu-btn {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
+  }
+  .navbar-search {
+    display: none;
+  }
+  .profile-info {
+    display: none;
+  }
+  .navbar-profile {
+    border-left: none;
+    padding-left: 0;
+  }
+}

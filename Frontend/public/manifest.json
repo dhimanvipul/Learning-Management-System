@@ -1,0 +1,9 @@
+{
+  "short_name": "LMS Admin",
+  "name": "LMS Admin Dashboard",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0d0d0d",
+  "background_color": "#ffffff"
+}

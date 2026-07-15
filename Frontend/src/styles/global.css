@@ -1,0 +1,321 @@
+@import "./variables.css";
+
+/* ================================================================
+   GLOBAL RESETS & BASE STYLES
+   ================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text-heading);
+  transition: color var(--transition-theme);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+ul {
+  list-style: none;
+}
+
+/* ================================================================
+   SCROLLBAR
+   ================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
+
+/* ================================================================
+   PAGE CONTAINER & LAYOUT HELPERS
+   ================================================================ */
+
+.page-container {
+  padding: 28px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.page-header-text h1 {
+  font-size: 26px;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+  color: var(--text-heading);
+}
+
+.page-header-text p {
+  color: var(--text-secondary);
+  font-size: 14.5px;
+}
+
+.gold-accent {
+  color: var(--color-gold-dark);
+}
+
+.section-title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-heading);
+}
+
+/* ================================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 20px 16px;
+  }
+  .page-header-text h1 {
+    font-size: 21px;
+  }
+}
+
+/* ================================================================
+   DARK MODE — GLOBAL LAYOUT BACKGROUNDS
+   All layout wrapper and page backgrounds automatically update
+   via CSS token inheritance. These explicit rules catch any
+   containers that set their own explicit background.
+   ================================================================ */
+
+body.dark-theme .dashboard-layout,
+body.dark-theme .dashboard-main,
+body.dark-theme .dashboard-content,
+body.dark-theme .settings-page,
+body.dark-theme .profile-page,
+body.dark-theme .course-content-page,
+body.dark-theme .not-found-page,
+body.dark-theme .lesson-view-page {
+  background: var(--bg-page) !important;
+}
+
+/* ================================================================
+   DARK MODE — GENERIC CARD SELECTOR SAFETY NET
+   Catches any card class that uses a hardcoded white background
+   ================================================================ */
+
+body.dark-theme .dashboard-panel,
+body.dark-theme .dashboard-card,
+body.dark-theme .stats-card,
+body.dark-theme .stat-card,
+body.dark-theme .summary-card,
+body.dark-theme .recent-card,
+body.dark-theme .table-container,
+body.dark-theme .settings-card,
+body.dark-theme .profile-card,
+body.dark-theme .profile-form,
+body.dark-theme .section-card,
+body.dark-theme .content-section-card,
+body.dark-theme .lesson-card,
+body.dark-theme .upload-box,
+body.dark-theme .account-box {
+  background: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* ================================================================
+   DARK MODE — DATA TABLE (generic table tag)
+   ================================================================ */
+
+body.dark-theme table {
+  background: transparent;
+}
+
+body.dark-theme thead {
+  background: var(--bg-table-head);
+}
+
+body.dark-theme tbody tr {
+  border-color: var(--border-color);
+}
+
+body.dark-theme tbody tr:hover {
+  background: var(--bg-table-row-hover);
+}
+
+/* ================================================================
+   DARK MODE — GENERIC FORMS (safety net for un-tokenized inputs)
+   ================================================================ */
+
+body.dark-theme input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+body.dark-theme textarea,
+body.dark-theme select {
+  background: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color-input) !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* ================================================================
+   DARK MODE — BUTTONS
+   ================================================================ */
+
+body.dark-theme .save-btn {
+  background: var(--color-gold);
+  color: #111;
+}
+
+body.dark-theme .save-btn:hover {
+  filter: brightness(1.1);
+}
+
+body.dark-theme .gold-btn {
+  background: var(--color-gold);
+  color: #111;
+}
+
+body.dark-theme .gold-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* ================================================================
+   DARK MODE — DETAIL ITEMS
+   ================================================================ */
+
+body.dark-theme .detail-item {
+  background: var(--bg-muted) !important;
+  border-color: var(--border-color) !important;
+}
+
+body.dark-theme .detail-label,
+body.dark-theme .detail-value {
+  color: var(--text-primary) !important;
+}
+
+/* ================================================================
+   DARK MODE — ACTIVITY ITEMS
+   ================================================================ */
+
+body.dark-theme .activity-item:hover {
+  background: var(--bg-muted);
+}
+
+body.dark-theme .activity-name {
+  color: var(--text-primary);
+}
+
+body.dark-theme .activity-sub {
+  color: var(--text-secondary);
+}
+
+/* ================================================================
+   DARK MODE — LESSON / TOOLBAR COUNTS
+   ================================================================ */
+
+body.dark-theme .lesson-count {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+body.dark-theme .toolbar-count {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+/* ================================================================
+   DARK MODE — UPLOAD BOX
+   ================================================================ */
+
+body.dark-theme .upload-box:hover {
+  background: var(--bg-card-alt);
+}
+
+/* ================================================================
+   DARK MODE — NOT FOUND PAGE
+   ================================================================ */
+
+body.dark-theme .not-found-page p {
+  color: var(--text-secondary);
+}
+
+/* ================================================================
+   SMOOTH TRANSITIONS — applied to all major elements
+   ================================================================ */
+
+.navbar,
+.sidebar,
+.dashboard-panel,
+.stat-card,
+.settings-card,
+.profile-card,
+.table-wrapper,
+.modal-box,
+.notification-dropdown,
+.profile-dropdown {
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme);
+}

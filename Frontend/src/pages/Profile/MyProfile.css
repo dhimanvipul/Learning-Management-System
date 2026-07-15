@@ -1,0 +1,260 @@
+.profile-page {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 30px;
+  padding: 25px;
+}
+
+.profile-card {
+  background: #111;
+  color: #fff;
+  border-radius: 18px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  border: 1px solid rgba(212,175,55,.25);
+  height: fit-content;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#d4af37,#f7d774);
+  color: #111;
+  font-size: 48px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card h2{
+  margin-top:20px;
+  margin-bottom:5px;
+}
+
+.profile-card p{
+  color:#cfcfcf;
+  margin-bottom:20px;
+}
+
+.edit-btn{
+  background:#d4af37;
+  color:#111;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:auto;
+}
+
+.edit-btn:hover{
+  transform:translateY(-2px);
+}
+
+.profile-form{
+  background:#fff;
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.profile-form h2{
+  margin-bottom:25px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group label{
+  font-weight:600;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#444;
+}
+
+.form-group input{
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+}
+
+.form-group input:focus{
+  outline:none;
+  border-color:#d4af37;
+}
+
+.account-box{
+  margin-top:35px;
+  background:#fafafa;
+  border-left:5px solid #d4af37;
+  padding:20px;
+  border-radius:12px;
+}
+
+.account-box h3{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.account-box p{
+  margin:8px 0;
+}
+
+.save-btn{
+  margin-top:30px;
+  background:#111;
+  color:#fff;
+  border:none;
+  padding:14px 28px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+}
+
+.save-btn:hover{
+  background:#d4af37;
+  color:#111;
+}
+
+@media(max-width:900px){
+
+.profile-page{
+grid-template-columns:1fr;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+}
+
+.avatar-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+
+.remove-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #e74c3c;
+  background: #fff;
+  color: #e74c3c;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.remove-btn:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+/* ================= PROFILE DARK MODE ================= */
+
+body.dark-theme .profile-page{
+    background:#111827;
+}
+
+body.dark-theme .profile-card{
+    background:#1f2937;
+    border:1px solid #374151;
+    color:#fff;
+}
+
+body.dark-theme .profile-card h2{
+    color:#fff;
+}
+
+body.dark-theme .profile-card p{
+    color:#cbd5e1;
+}
+
+body.dark-theme .profile-form{
+    background:#1f2937;
+    border:1px solid #374151;
+    color:#fff;
+}
+
+body.dark-theme .profile-form h2{
+    color:#fff;
+}
+
+body.dark-theme .form-group label{
+    color:#e5e7eb;
+}
+
+body.dark-theme .form-group input{
+    background:#374151;
+    border:1px solid #4b5563;
+    color:#fff;
+}
+
+body.dark-theme .form-group input::placeholder{
+    color:#9ca3af;
+}
+
+body.dark-theme .form-group input:focus{
+    border-color:#d4af37;
+}
+
+body.dark-theme .account-box{
+    background:#374151;
+    border-left:5px solid #d4af37;
+}
+
+body.dark-theme .account-box h3{
+    color:#fff;
+}
+
+body.dark-theme .account-box p{
+    color:#d1d5db;
+}
+
+body.dark-theme .save-btn{
+    background:#d4af37;
+    color:#111827;
+}
+
+body.dark-theme .save-btn:hover{
+    background:#f0d878;
+}
+
+body.dark-theme .edit-btn{
+    background:#d4af37;
+    color:#111827;
+}
+
+body.dark-theme .remove-btn{
+    background:#1f2937;
+    border:1px solid #ef4444;
+    color:#ef4444;
+}
+
+body.dark-theme .remove-btn:hover{
+    background:#ef4444;
+    color:#fff;
+}

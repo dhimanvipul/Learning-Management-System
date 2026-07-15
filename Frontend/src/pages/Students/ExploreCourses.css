@@ -1,0 +1,585 @@
+/* Explore Courses Catalog CSS */
+
+.explore-courses-page {
+  padding: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ================= HEADER SECTION ================= */
+
+.explore-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--color-gray-200, #eaeaea);
+  padding-bottom: 20px;
+}
+
+.header-text-block h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-black, #111111);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.compass-icon-spin {
+  color: var(--color-gold, #D4AF37);
+  animation: compassSpin 20s infinite linear;
+}
+
+@keyframes compassSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header-text-block p {
+  font-size: 14.5px;
+  color: var(--color-gray-500, #666666);
+  margin-top: 4px;
+}
+
+/* ================= TOOLBAR FILTERS ================= */
+
+.explore-filters-bar {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  background: var(--color-white, #ffffff);
+  padding: 16px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-gray-200, #eaeaea);
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.05));
+  flex-wrap: wrap;
+}
+
+.explore-search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 280px;
+}
+
+.search-icon-decor {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gray-400, #888888);
+  font-size: 16px;
+}
+
+.explore-search-input-wrapper input {
+  width: 100%;
+  padding: 11px 16px 11px 42px;
+  border: 1px solid var(--color-gray-300, #dcdcdc);
+  border-radius: var(--radius-sm, 4px);
+  font-size: 14px;
+  outline: none;
+  background: var(--color-white, #ffffff);
+  color: var(--color-black, #111111);
+  transition: border-color var(--transition-fast, 0.2s);
+}
+
+.explore-search-input-wrapper input:focus {
+  border-color: var(--color-gold, #D4AF37);
+}
+
+.level-filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-lvl-btn {
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-300, #dcdcdc);
+  border-radius: var(--radius-sm, 4px);
+  padding: 10px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-gray-600, #555555);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-lvl-btn:hover {
+  background: var(--color-off-white, #f9f9f9);
+  border-color: var(--color-black, #111111);
+  color: var(--color-black, #111111);
+}
+
+.filter-lvl-btn.active {
+  background: var(--color-gold, #D4AF37);
+  border-color: var(--color-gold, #D4AF37);
+  color: var(--color-black, #111111);
+}
+
+/* ================= GRID AND CARDS ================= */
+
+.explore-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 25px;
+}
+
+.explore-course-card {
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #eaeaea);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.05));
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.explore-course-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold, #D4AF37);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+}
+
+.card-media-banner {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: var(--color-off-white, #f9f9f9);
+  overflow: hidden;
+}
+
+.catalog-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.catalog-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(212, 175, 55, 0.05);
+  color: var(--color-gold-dark, #AA7C11);
+}
+
+.level-pill-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill, 999px);
+  text-transform: uppercase;
+}
+
+.level-pill-badge.beginner {
+  background: var(--color-success-bg, rgba(47, 174, 96, 0.15));
+  color: var(--color-success, #2fae60);
+}
+
+.level-pill-badge.intermediate {
+  background: var(--color-warning-bg, rgba(230, 126, 34, 0.15));
+  color: var(--color-warning, #e67e22);
+}
+
+.level-pill-badge.advanced {
+  background: var(--color-danger-bg, rgba(192, 57, 43, 0.15));
+  color: var(--color-danger, #c0392b);
+}
+
+.card-details-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.course-code-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-gold-dark, #AA7C11);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.card-details-info h3 {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--color-black, #111111);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.description-snip {
+  font-size: 13px;
+  color: var(--color-gray-500, #666666);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 38px;
+}
+
+.card-meta-line-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-top: 1px solid var(--color-gray-150, #f1f1f1);
+  padding-top: 14px;
+}
+
+.meta-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-gray-500, #666666);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-price-enrollment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price-tag-wrap {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-black, #111111);
+}
+
+.dollar-icon {
+  font-size: 14px;
+  color: var(--color-gold-dark, #AA7C11);
+}
+
+.enrollment-btn-action {
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 4px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.enrollment-btn-action.enroll-now {
+  background: var(--color-black, #111111);
+  color: var(--color-white, #ffffff);
+}
+
+.enrollment-btn-action.enroll-now:hover {
+  background: var(--color-gold, #D4AF37);
+  color: var(--color-black, #111111);
+}
+
+.enrollment-btn-action.enrolled {
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--color-gold-dark, #AA7C11);
+  border: 1px solid var(--color-gold, #D4AF37);
+}
+
+.enrollment-btn-action.enrolled:hover {
+  background: var(--color-gold, #D4AF37);
+  color: var(--color-black, #111111);
+}
+
+/* ================= MODAL FULLSCREEN ================= */
+
+.checkout-confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout-confirm-modal-card {
+  background: var(--color-white, #ffffff);
+  border-radius: var(--radius-lg, 12px);
+  width: 90%;
+  max-width: 480px;
+  box-shadow: var(--shadow-lg, 0 10px 40px rgba(0,0,0,0.12));
+  overflow: hidden;
+  border: 1px solid var(--color-gray-200, #eaeaea);
+}
+
+.checkout-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--color-gray-150, #f1f1f1);
+}
+
+.checkout-modal-header h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-black, #111111);
+}
+
+.close-checkout-modal-btn {
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  color: var(--color-gray-400, #aaaaaa);
+  cursor: pointer;
+}
+
+.close-checkout-modal-btn:hover {
+  color: var(--color-black, #111111);
+}
+
+.checkout-modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-course-summary-box {
+  background: var(--color-off-white, #f9f9f9);
+  padding: 16px;
+  border-radius: var(--radius-sm, 4px);
+  border: 1px solid var(--color-gray-200, #eaeaea);
+}
+
+.checkout-course-summary-box h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-black, #111111);
+  margin-bottom: 6px;
+}
+
+.checkout-instructor-p {
+  font-size: 12.5px;
+  color: var(--color-gray-500, #666666);
+  margin-bottom: 12px;
+}
+
+.checkout-badge-row {
+  display: flex;
+  gap: 6px;
+}
+
+.badge-checkout-pill {
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-300, #dcdcdc);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill, 999px);
+  color: var(--color-gray-700, #444444);
+}
+
+.checkout-pricing-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pricing-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: var(--color-gray-600, #555555);
+}
+
+.pricing-line.discount {
+  color: var(--color-success, #2fae60);
+}
+
+.pricing-total-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 700;
+  border-top: 1px solid var(--color-gray-200, #eaeaea);
+  padding-top: 10px;
+  color: var(--color-black, #111111);
+}
+
+.simulated-payment-notification {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(47, 174, 96, 0.06);
+  border: 1px solid rgba(47, 174, 96, 0.15);
+  border-radius: var(--radius-sm, 4px);
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--color-success, #2fae60);
+}
+
+.simulated-payment-notification p {
+  line-height: 1.4;
+}
+
+.checkout-primary-submit-btn {
+  background: var(--color-black, #111111);
+  color: var(--color-white, #ffffff);
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius-sm, 4px);
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.checkout-primary-submit-btn:hover {
+  background: var(--color-gold, #D4AF37);
+  color: var(--color-black, #111111);
+}
+
+/* ================= SPINNER / LAYOUT ================= */
+
+.explore-loading-wrapper,
+.explore-error-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.explore-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+  gap: 12px;
+  color: var(--color-gray-400, #888888);
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #eaeaea);
+  border-radius: var(--radius-lg, 12px);
+  text-align: center;
+}
+
+.fade-book-icon {
+  color: var(--color-gray-300);
+}
+
+/* ================================================================
+   DARK MODE — ExploreCourses
+   ================================================================ */
+
+body.dark-theme .explore-header-section {
+  border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .explore-filters-bar {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .explore-search-input-wrapper input,
+body.dark-theme .filter-lvl-btn {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color-input);
+}
+
+body.dark-theme .filter-lvl-btn:hover {
+  background: var(--bg-card-alt);
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+}
+
+body.dark-theme .filter-lvl-btn.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #111;
+}
+
+body.dark-theme .explore-course-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .explore-course-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+}
+
+body.dark-theme .card-meta-line-row {
+  border-top-color: var(--border-color);
+}
+
+body.dark-theme .checkout-confirm-modal-card {
+  background: var(--bg-modal);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .checkout-modal-header {
+  border-bottom-color: var(--border-color);
+}
+
+body.dark-theme .checkout-modal-header h2,
+body.dark-theme .checkout-course-summary-box h4 {
+  color: var(--text-heading);
+}
+
+body.dark-theme .checkout-course-summary-box {
+  background: var(--bg-card-alt);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .badge-checkout-pill {
+  background: var(--bg-muted);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.dark-theme .pricing-total-line {
+  border-top-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+body.dark-theme .explore-empty-state {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .close-checkout-modal-btn {
+  color: var(--text-secondary);
+}
+
+body.dark-theme .close-checkout-modal-btn:hover {
+  color: var(--text-primary);
+}
+
+body.dark-theme .enrollment-btn-action.enroll-now {
+  background: var(--text-primary);
+  color: var(--bg-page);
+}
+
+body.dark-theme .checkout-primary-submit-btn {
+  background: var(--text-primary);
+  color: var(--bg-page);
+}
+
+body.dark-theme .checkout-primary-submit-btn:hover {
+  background: var(--color-gold);
+  color: #111;
+}

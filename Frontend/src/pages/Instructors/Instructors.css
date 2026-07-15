@@ -1,0 +1,45 @@
+/* Instructors Page Styling */
+
+.instructor-tabs-bar {
+  display: flex;
+  gap: 16px;
+  border-bottom: 2px solid var(--color-gray-200, #eaeaea);
+  margin-bottom: 24px;
+  padding-bottom: 2px;
+}
+
+.inst-tab-btn {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-gray-500, #666666);
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all var(--transition-fast, 0.2s);
+}
+
+.inst-tab-btn:hover {
+  color: var(--color-black, #111111);
+}
+
+.inst-tab-btn.active {
+  color: var(--color-gold-dark, #AA7C11);
+  border-bottom-color: var(--color-gold, #D4AF37);
+}
+
+.pending-indicator-dot {
+  background: var(--color-danger, #ef4444);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill, 9999px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

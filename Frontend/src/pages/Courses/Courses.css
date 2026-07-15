@@ -1,0 +1,58 @@
+.filter-box {
+  min-width: 220px;
+}
+
+.filter-box .input-field {
+  margin-bottom: 0;
+}
+
+.instructor-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .filter-box {
+    width: 100%;
+  }
+}
+
+
+table img {
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.course-thumbnail {
+  width: 80px !important;
+  height: 50px !important;
+  border-radius: 8px !important;
+  object-fit: cover !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform var(--transition-fast) !important;
+}
+
+.course-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.course-thumbnail-placeholder {
+  width: 80px;
+  height: 50px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "lms-backend-phase2",
+  "version": "2.0.0",
+  "description": "LMS backend (Phase 2) — module-based architecture backed by MongoDB via Mongoose (SkillifyMe Week 2 Day 9).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0",
+    "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^9.0.3",
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.3",
+    "streamifier": "^0.1.1"
+  }
+}

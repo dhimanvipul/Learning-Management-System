@@ -1,0 +1,159 @@
+/* ================================================================
+   SETTINGS — fully tokenized for light/dark support
+   ================================================================ */
+
+.settings-page {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  background: var(--bg-page);
+  transition: background-color var(--transition-theme);
+}
+
+.settings-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  border: 1px solid var(--border-color);
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.settings-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: var(--text-heading);
+  font-size: 22px;
+  transition: color var(--transition-theme);
+}
+
+.settings-card h2 svg {
+  color: var(--color-gold);
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color-input);
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition:
+    border-color 0.3s,
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+.settings-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.settings-form input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201,162,39,.15);
+}
+
+.gold-btn {
+  background: var(--color-gold);
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.gold-btn:hover {
+  background: var(--color-gold-dark);
+}
+
+.save-btn {
+  background: var(--text-primary);
+  color: var(--bg-card);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-med),
+    color var(--transition-theme);
+}
+
+.save-btn:hover {
+  opacity: 0.85;
+}
+
+.theme-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.theme-box span {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color var(--transition-theme);
+}
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border-color);
+  border-radius: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 4px;
+  top: 4px;
+  background: var(--color-white);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+  background: var(--color-gold);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(28px);
+}

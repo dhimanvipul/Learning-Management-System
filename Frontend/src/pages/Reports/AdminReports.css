@@ -1,0 +1,394 @@
+/* Admin Reports Styling */
+
+.reports-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reports-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.reports-action-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reports-year-select {
+  padding: 10px 15px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-input);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+.export-report-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-gold);
+  color: #111;
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.export-report-btn:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-1px);
+}
+
+.export-report-btn.secondary {
+  background: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+.export-report-btn.secondary:hover {
+  background: var(--bg-input-dark);
+}
+
+.reports-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.report-metric-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-top-icon {
+  font-size: 20px;
+}
+
+.gold-color {
+  color: var(--color-gold-dark);
+}
+
+.report-metric-card h2 {
+  font-size: 28px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-heading);
+  transition: color var(--transition-theme);
+}
+
+.card-sub-info {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color var(--transition-theme);
+}
+
+/* Charts Section */
+.reports-chart-activity-row {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .reports-chart-activity-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.enrollment-chart-card,
+.distributions-card {
+  background: var(--bg-card);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.panel-header-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.panel-header-title h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-heading);
+  transition: color var(--transition-theme);
+}
+
+.legend-row {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.students-dot, .student-fill {
+  background-color: var(--color-gold-500);
+}
+
+.instructors-dot, .instructor-fill {
+  background-color: #2563eb;
+}
+
+.chart-wrapper-box {
+  min-height: 250px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.custom-bar-chart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 250px;
+  padding-top: 20px;
+}
+
+.chart-bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+}
+
+.chart-bar-track {
+  width: 30px;
+  height: calc(100% - 25px);
+  background: var(--bg-muted);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: visible;
+  transition: background-color var(--transition-theme);
+}
+
+.chart-bar-fill {
+  width: 100%;
+  border-radius: 4px;
+  position: relative;
+  transition: height 0.5s ease-out;
+}
+
+.double-track {
+  width: 45px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  background: transparent;
+  gap: 4px;
+}
+
+.double-track .chart-bar-fill {
+  width: 18px;
+}
+
+.bar-tooltip-label {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-dark-card, #1e1e1e);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.chart-bar-fill:hover .bar-tooltip-label {
+  opacity: 1;
+}
+
+.chart-bar-month-text {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  transition: color var(--transition-theme);
+}
+
+/* Distribution Progress Listings */
+.distributions-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.distribution-section {
+  width: 100%;
+}
+
+.distribution-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.distribution-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dist-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color var(--transition-theme);
+}
+
+.progress-bar-outer {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-muted);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  transition: background-color var(--transition-theme);
+}
+
+.progress-bar-inner {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  transition: width 0.4s ease;
+}
+
+.gold-bg {
+  background-color: var(--color-gold);
+}
+
+.success-bg {
+  background-color: #10b981;
+}
+
+.danger-bg {
+  background-color: #ef4444;
+}
+
+/* Dark Theme Support */
+body.dark-theme .report-metric-card,
+body.dark-theme .enrollment-chart-card,
+body.dark-theme .distributions-card {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .chart-bar-track,
+body.dark-theme .progress-bar-outer {
+  background: var(--bg-muted);
+}
+
+body.dark-theme .dist-label-row {
+  color: var(--text-primary);
+}
+
+body.dark-theme .reports-year-select {
+  background-color: var(--bg-input);
+  border-color: var(--border-color-input);
+  color: var(--text-primary);
+}
+
+body.dark-theme .export-report-btn.secondary {
+  background-color: var(--bg-muted);
+  color: var(--text-primary);
+}
+
+/* Print CSS */
+@media print {
+  .navbar,
+  .sidebar,
+  .no-print,
+  .export-report-btn,
+  .reports-year-select,
+  .menu-btn {
+    display: none !important;
+  }
+  
+  body, html {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .reports-page-container {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .report-metric-card,
+  .enrollment-chart-card,
+  .distributions-card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  
+  .chart-bar-track,
+  .progress-bar-outer {
+    background: #eee !important;
+  }
+}

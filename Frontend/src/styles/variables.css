@@ -1,0 +1,196 @@
+/* ============================================================
+   SKILLVERSE LMS — CENTRALIZED CSS VARIABLE / TOKEN SYSTEM
+   Light Mode (default) + Dark Mode via body.dark-theme
+   Gold + Black + White Brand
+   ============================================================ */
+
+:root {
+  /* ---- Core Palette ---- */
+  --color-black:        #0d0d0d;
+  --color-black-soft:   #161616;
+  --color-black-lighter:#1f1f1f;
+  --color-gold:         #d4af37;
+  --color-gold-light:   #f0d878;
+  --color-gold-dark:    #a8862b;
+  --color-white:        #ffffff;
+  --color-off-white:    #f7f6f3;
+  --color-gray-50:      #fafafa;
+  --color-gray-100:     #f2f2f2;
+  --color-gray-150:     #eeeeee;
+  --color-gray-200:     #e4e4e4;
+  --color-gray-300:     #cfcfcf;
+  --color-gray-400:     #a3a3a3;
+  --color-gray-500:     #737373;
+  --color-gray-600:     #525252;
+  --color-gray-700:     #3a3a3a;
+
+  /* ---- Status Colors ---- */
+  --color-success:      #2fae60;
+  --color-success-bg:   #e7f8ee;
+  --color-danger:       #e14545;
+  --color-danger-bg:    #fdeceb;
+  --color-warning:      #e0a800;
+  --color-warning-bg:   #fdf3d9;
+  --color-info:         #2f8ae0;
+  --color-info-bg:      #e8f2fd;
+
+  /* ---- Shadows ---- */
+  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md:  0 4px 14px rgba(0, 0, 0, 0.10);
+  --shadow-lg:  0 10px 30px rgba(0, 0, 0, 0.14);
+  --shadow-gold: 0 6px 18px rgba(212, 175, 55, 0.25);
+
+  /* ---- Radii ---- */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-pill: 999px;
+
+  /* ---- Typography ---- */
+  --font-heading: "Poppins", "Segoe UI", sans-serif;
+  --font-body:    "Inter",   "Segoe UI", sans-serif;
+
+  /* ---- Transitions ---- */
+  --transition-fast: 0.15s ease;
+  --transition-med:  0.25s ease;
+  --transition-theme: 0.25s ease;
+
+  /* ---- Layout ---- */
+  --sidebar-width:           260px;
+  --sidebar-width-collapsed:  78px;
+  --navbar-height:            70px;
+
+  /* ===========================================================
+     SEMANTIC THEME TOKENS — Light Mode defaults
+     These are the ONLY tokens components should reference
+     for colors that need to switch between light and dark.
+     =========================================================== */
+
+  /* Backgrounds */
+  --bg-page:        #f7f6f3;
+  --bg-card:        #ffffff;
+  --bg-card-alt:    #fafafa;
+  --bg-muted:       #f2f2f2;
+  --bg-input:       #ffffff;
+  --bg-input-dark:  #f2f2f2;
+  --bg-navbar:      #ffffff;
+  --bg-sidebar:     #0d0d0d;
+  --bg-table-head:  #0d0d0d;
+  --bg-table-row-hover: rgba(212, 175, 55, 0.05);
+  --bg-hover:       rgba(212, 175, 55, 0.06);
+  --bg-tag:         #f2f2f2;
+  --bg-search:      #f2f2f2;
+  --bg-dropdown:    #ffffff;
+  --bg-modal:       #ffffff;
+  --bg-overlay-soft: rgba(212, 175, 55, 0.04);
+
+  /* Text */
+  --text-primary:    #0d0d0d;
+  --text-secondary:  #737373;
+  --text-muted:      #a3a3a3;
+  --text-inverse:    #ffffff;
+  --text-on-gold:    #0d0d0d;
+  --text-heading:    #0d0d0d;
+
+  /* Borders */
+  --border-color:       #e4e4e4;
+  --border-color-light: #f2f2f2;
+  --border-color-input: #e4e4e4;
+  --border-color-focus: #d4af37;
+
+  /* Navbar search specifically */
+  --search-bg:          #f2f2f2;
+  --search-text:        #0d0d0d;
+  --search-placeholder: #737373;
+  --search-border:      #e4e4e4;
+  --search-icon-color:  #737373;
+
+  /* Scrollbar */
+  --scrollbar-track: #f2f2f2;
+
+  /* Icon buttons in navbar */
+  --icon-btn-bg:    #f2f2f2;
+  --icon-btn-color: #0d0d0d;
+  --icon-btn-hover: #e4e4e4;
+
+  /* Profile section in navbar */
+  --navbar-profile-border: #e4e4e4;
+
+  /* Notification dropdown */
+  --notif-bg:          #ffffff;
+  --notif-border:      #eeeeee;
+  --notif-item-hover:  #fff8e6;
+  --notif-header-border: #eeeeee;
+  --delete-btn-bg:     #f8f8f8;
+}
+
+/* ================================================================
+   DARK MODE THEME TOKENS
+   All semantic tokens are redefined here. Components automatically
+   pick up the correct value based on the body class.
+   ================================================================ */
+
+body.dark-theme {
+  /* Backgrounds */
+  --bg-page:        #0f172a;
+  --bg-card:        #1e293b;
+  --bg-card-alt:    #263548;
+  --bg-muted:       #334155;
+  --bg-input:       #334155;
+  --bg-input-dark:  #263548;
+  --bg-navbar:      #1e293b;
+  --bg-sidebar:     #0f172a;
+  --bg-table-head:  #1e293b;
+  --bg-table-row-hover: rgba(212, 175, 55, 0.07);
+  --bg-hover:       rgba(212, 175, 55, 0.10);
+  --bg-tag:         #334155;
+  --bg-search:      #334155;
+  --bg-dropdown:    #1e293b;
+  --bg-modal:       #1e293b;
+  --bg-overlay-soft: rgba(212, 175, 55, 0.06);
+
+  /* Text */
+  --text-primary:    #f1f5f9;
+  --text-secondary:  #94a3b8;
+  --text-muted:      #64748b;
+  --text-inverse:    #0d0d0d;
+  --text-on-gold:    #0d0d0d;
+  --text-heading:    #f1f5f9;
+
+  /* Borders */
+  --border-color:       #334155;
+  --border-color-light: #1e293b;
+  --border-color-input: #475569;
+  --border-color-focus: #d4af37;
+
+  /* Navbar search */
+  --search-bg:          #334155;
+  --search-text:        #f1f5f9;
+  --search-placeholder: #94a3b8;
+  --search-border:      #475569;
+  --search-icon-color:  #94a3b8;
+
+  /* Scrollbar */
+  --scrollbar-track: #1e293b;
+
+  /* Icon buttons in navbar */
+  --icon-btn-bg:    #334155;
+  --icon-btn-color: #f1f5f9;
+  --icon-btn-hover: #475569;
+
+  /* Profile section in navbar */
+  --navbar-profile-border: #334155;
+
+  /* Notification dropdown */
+  --notif-bg:          #1e293b;
+  --notif-border:      #334155;
+  --notif-item-hover:  rgba(212, 175, 55, 0.08);
+  --notif-header-border: #334155;
+  --delete-btn-bg:     #334155;
+
+  /* Status colors adjusted for dark */
+  --color-success-bg:   rgba(47, 174, 96, 0.12);
+  --color-danger-bg:    rgba(225, 69, 69, 0.12);
+  --color-warning-bg:   rgba(224, 168, 0, 0.12);
+  --color-info-bg:      rgba(47, 138, 224, 0.12);
+}

@@ -1,0 +1,78 @@
+{
+  "info": {
+    "name": "LMS Backend Phase 2 (MongoDB) - SkillifyMe Week 2 Day 9",
+    "description": "Module-based LMS backend backed by MongoDB/Mongoose. Base: http://localhost:3000. Run in order: instructor -> course -> student -> enroll. Then restart the server and GET students to prove persistence.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:3000/api/v1" }],
+  "item": [
+    {
+      "name": "1. Create Instructor",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Dr Rao\",\n  \"subject\": \"Backend\",\n  \"email\": \"rao@lms.com\"\n}" },
+        "url": { "raw": "{{baseUrl}}/instructors", "host": ["{{baseUrl}}"], "path": ["instructors"] }
+      }
+    },
+    {
+      "name": "2. Create Course",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Node 101\",\n  \"code\": \"ND101\",\n  \"instructorId\": \"PASTE_INSTRUCTOR_ID\"\n}" },
+        "url": { "raw": "{{baseUrl}}/courses", "host": ["{{baseUrl}}"], "path": ["courses"] },
+        "description": "credits defaults to 3 (from the schema) if you omit it."
+      }
+    },
+    {
+      "name": "3. Create Student",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"name\": \"Asha\",\n  \"email\": \"asha@lms.com\",\n  \"age\": 20\n}" },
+        "url": { "raw": "{{baseUrl}}/students", "host": ["{{baseUrl}}"], "path": ["students"] }
+      }
+    },
+    {
+      "name": "4. Enroll Student in Course",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"studentId\": \"PASTE_STUDENT_ID\",\n  \"courseId\": \"PASTE_COURSE_ID\"\n}" },
+        "url": { "raw": "{{baseUrl}}/enrollments", "host": ["{{baseUrl}}"], "path": ["enrollments"] },
+        "description": "Validates both ids exist in MongoDB before linking."
+      }
+    },
+    {
+      "name": "5. Create Student - Bad Body (400)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"age\": 5\n}" },
+        "url": { "raw": "{{baseUrl}}/students", "host": ["{{baseUrl}}"], "path": ["students"] },
+        "description": "Missing required name & email -> schema validation 400."
+      }
+    },
+    {
+      "name": "Get All Students",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/students", "host": ["{{baseUrl}}"], "path": ["students"] } }
+    },
+    {
+      "name": "Get Student By Id",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/students/PASTE_STUDENT_ID", "host": ["{{baseUrl}}"], "path": ["students", "PASTE_STUDENT_ID"] } }
+    },
+    {
+      "name": "Get All Courses",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/courses", "host": ["{{baseUrl}}"], "path": ["courses"] } }
+    },
+    {
+      "name": "Get All Instructors",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/instructors", "host": ["{{baseUrl}}"], "path": ["instructors"] } }
+    },
+    {
+      "name": "Get All Enrollments (populated)",
+      "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/enrollments", "host": ["{{baseUrl}}"], "path": ["enrollments"] } }
+    }
+  ]
+}

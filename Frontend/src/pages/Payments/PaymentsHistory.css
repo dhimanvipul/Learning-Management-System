@@ -1,0 +1,61 @@
+/* ================================================================
+   PAYMENTS HISTORY — fully tokenized for light/dark support
+   ================================================================ */
+
+.payments-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 25px;
+  background: var(--bg-card);
+  padding: 15px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme);
+}
+
+.search-box-wrapper {
+  flex: 1;
+  min-width: 300px;
+}
+
+.filter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.status-select {
+  padding: 10px 15px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color-input);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+.status-select:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+}
+
+.export-actions {
+  display: flex;
+  align-items: center;
+}
+
+.font-mono {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  letter-spacing: -0.2px;
+}
