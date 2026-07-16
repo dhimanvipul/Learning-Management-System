@@ -1,0 +1,101 @@
+name: LMS MERN Docker CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-pipeline:
+    name: Install, Build, and Validate Docker Stack
+    runs-on: ubuntu-latest
+
+    # Service container for MongoDB to test backend startup connectivity
+    services:
+      mongodb:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Setup stable Node.js LTS
+      - name: Setup Node.js (v20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: |
+            Frontend/package-lock.json
+            Backend/package-lock.json
+
+      # Step 3: Install Frontend Dependencies
+      - name: Install Frontend Dependencies
+        working-directory: ./Frontend
+        run: npm install
+
+      # Step 4: Install Backend Dependencies
+      - name: Install Backend Dependencies
+        working-directory: ./Backend
+        run: npm install
+
+      # Step 5: Build React Production Build
+      - name: Build React Frontend
+        working-directory: ./Frontend
+        env:
+          CI: false # Prevents warnings from being treated as errors during build
+          REACT_APP_API_BASE_URL: /api/v1
+          REACT_APP_SOCKET_URL: /
+        run: npm run build
+
+      # Step 6: Verify Backend Starts Correctly
+      - name: Verify Backend Starts Correctly
+        working-directory: ./Backend
+        env:
+          PORT: 5000
+          MONGO_URI: mongodb://localhost:27017/lms_test
+          CLOUDINARY_CLOUD_NAME: dummy
+          CLOUDINARY_API_KEY: dummy
+          CLOUDINARY_API_SECRET: dummy
+          MAIL_USER: dummy@example.com
+          MAIL_PASS: dummy
+        run: |
+          node server.js &
+          SERVER_PID=$!
+          echo "Waiting 10 seconds for Backend to boot and connect to Mongo..."
+          sleep 10
+          echo "Sending health check request..."
+          curl --fail http://localhost:5000/ || { echo "❌ Healthcheck failed"; kill $SERVER_PID; exit 1; }
+          echo "✅ Backend health check passed! Stopping server."
+          kill $SERVER_PID
+        shell: bash
+
+      # Step 7: Create dummy .env for Docker Compose validation and build
+      - name: Create dummy .env config file
+        run: |
+          echo "MONGO_URI=mongodb://localhost:27017/lms_test" >> .env
+          echo "PORT=5000" >> .env
+          echo "CLOUDINARY_CLOUD_NAME=dummy" >> .env
+          echo "CLOUDINARY_API_KEY=dummy" >> .env
+          echo "CLOUDINARY_API_SECRET=dummy" >> .env
+          echo "MAIL_USER=dummy@example.com" >> .env
+          echo "MAIL_PASS=dummy" >> .env
+          echo "RAZORPAY_KEY_ID=dummy" >> .env
+          echo "RAZORPAY_KEY_SECRET=dummy" >> .env
+          echo "REACT_APP_API_BASE_URL=http://localhost/api/v1" >> .env
+          echo "REACT_APP_SOCKET_URL=http://localhost" >> .env
+          echo "JWT_SECRET=dummy" >> .env
+
+      # Step 8: Validate docker-compose.yml configuration
+      - name: Validate Docker Compose Configuration
+        run: docker compose config
+
+      # Step 9: Build Docker images
+      - name: Build Docker Stack Images
+        run: docker compose build
