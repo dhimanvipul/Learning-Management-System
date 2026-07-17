@@ -4,6 +4,7 @@ import { FiBookOpen, FiMessageCircle } from "react-icons/fi";
 import { toast } from "react-toastify";
 import socketService from "../../services/socketService";
 import chatService from "../../services/chatService";
+import enrollmentService from "../../services/enrollmentService";
 import ChatDrawer from "../../components/Common/ChatDrawer";
 import "./MyCourses.css";
 
@@ -42,9 +43,7 @@ const MyCourses = () => {
     const fetchCourses = async () => {
       try {
         if (!user?._id) return;
-        const res = await fetch(`http://localhost:5000/api/enrollments/student/${user._id}`);
-        const result = await res.json();
-        const data = result.data || [];
+        const data = await enrollmentService.getStudentEnrollments(user._id);
         setCourses(data);
 
         // Fetch conversations to load initial unread badges

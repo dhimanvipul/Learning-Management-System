@@ -13,6 +13,7 @@ import InputField from "../../components/Common/InputField";
 import CourseForm from "./CourseForm";
 import courseService from "../../services/courseService";
 import instructorService from "../../services/instructorService";
+import { BASE_URL } from "../../services/apiClient";
 import "./Courses.css";
 
 const CourseThumbnail = ({ course }) => {
@@ -23,7 +24,7 @@ const CourseThumbnail = ({ course }) => {
     if (path.startsWith("http://") || path.startsWith("https://")) {
       return path;
     }
-    const baseUrl = process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api/v1";
+    const baseUrl = BASE_URL;
     const origin = baseUrl.replace(/\/api\/v1\/?$/, "");
     const cleanPath = path.startsWith("/") ? path.slice(1) : path;
     return `${origin}/${cleanPath}`;

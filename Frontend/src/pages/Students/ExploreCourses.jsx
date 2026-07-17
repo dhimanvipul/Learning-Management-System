@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import courseService from "../../services/courseService";
+import enrollmentService from "../../services/enrollmentService";
+import paymentService from "../../services/paymentService";
 import Spinner from "../../components/Common/Spinner";
 import ErrorState from "../../components/Common/ErrorState";
 import "./ExploreCourses.css";
@@ -52,11 +53,8 @@ const ExploreCourses = () => {
       setCourses(courseList);
 
       // 2. Fetch student's current enrollments
-      const resEnroll = await fetch(
-        `http://localhost:5000/api/enrollments/student/${user._id}`
-      );
-      const enrollmentsRes = await resEnroll.json();
-      setEnrollments(enrollmentsRes.data || []);
+      const enrollmentsData = await enrollmentService.getStudentEnrollments(user._id);
+      setEnrollments(enrollmentsData);
     } catch (err) {
       console.error(err);
       setError("Failed to fetch course catalog. Please try again.");
@@ -122,19 +120,13 @@ const ExploreCourses = () => {
 
     try {
       // 1. Create order on Backend
-      const orderRes = await axios.post(
-        "http://localhost:5000/api/v1/payments/order",
-        {
-          studentId: user._id,
-          courseId: targetCourse._id,
-        }
-      );
+      const orderDataRes = await paymentService.createOrder(user._id, targetCourse._id);
 
-      if (!orderRes.data.success) {
-        throw new Error(orderRes.data.message || "Failed to create order");
+      if (!orderDataRes.success) {
+        throw new Error(orderDataRes.message || "Failed to create order");
       }
 
-      const orderData = orderRes.data.data;
+      const orderData = orderDataRes.data;
 
       // 2. Load script & handle checkout
       const scriptLoaded = await loadRazorpayScript();
@@ -146,16 +138,13 @@ const ExploreCourses = () => {
         });
 
         // Trigger verification with mock parameters to enroll immediately
-        const verifyRes = await axios.post(
-          "http://localhost:5000/api/v1/payments/verify",
-          {
-            razorpay_order_id: orderData.orderId,
-            razorpay_payment_id: `pmt_mock_${Math.random().toString(36).substring(7)}`,
-            razorpay_signature: `sig_mock_${Math.random().toString(36).substring(7)}`,
-          }
-        );
+        const verifyRes = await paymentService.verifyPayment({
+          razorpay_order_id: orderData.orderId,
+          razorpay_payment_id: `pmt_mock_${Math.random().toString(36).substring(7)}`,
+          razorpay_signature: `sig_mock_${Math.random().toString(36).substring(7)}`,
+        });
 
-        if (verifyRes.data.success) {
+        if (verifyRes.success) {
           toast.success(`Enrolled in ${targetCourse.title} successfully! 🚀`);
           setShowConfirmModal(false);
           navigate("/student/courses");
@@ -174,16 +163,13 @@ const ExploreCourses = () => {
           handler: async function (response) {
             try {
               // 3. Verify Payment on Backend
-              const verifyRes = await axios.post(
-                "http://localhost:5000/api/v1/payments/verify",
-                {
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                }
-              );
+              const verifyRes = await paymentService.verifyPayment({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              });
 
-              if (verifyRes.data.success) {
+              if (verifyRes.success) {
                 toast.success(`Welcome aboard! Course unlocked successfully. 🚀`);
                 setShowConfirmModal(false);
                 navigate("/student/courses");

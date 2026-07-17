@@ -58,6 +58,11 @@ const lessonService = {
     const res = await apiClient.delete(`/lessons/${id}`);
     return res.data?.data;
   },
+
+  updateProgress: async (payload) => {
+    const res = await apiClient.put(`${RESOURCE}/progress/update`, payload);
+    return res.data;
+  },
 };
 
 export default lessonService;

@@ -6,6 +6,7 @@ import {
   FiTrendingUp,
 } from "react-icons/fi";
 import StatCard from "../../components/Cards/StatCard";
+import enrollmentService from "../../services/enrollmentService";
 import "../Dashboard/Dashboard.css";
 
 const Dashboard = () => {
@@ -24,13 +25,7 @@ const Dashboard = () => {
 
         if (!user?._id) return;
 
-        const res = await fetch(
-          `http://localhost:5000/api/enrollments/student/${user._id}`
-        );
-
-        const data = await res.json();
-
-        const courseData = data.data || [];
+        const courseData = await enrollmentService.getStudentEnrollments(user._id);
 
         setCourses(courseData);;
 

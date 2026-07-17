@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import sectionService from "../../services/sectionService";
+import lessonService from "../../services/lessonService";
 
 const CourseLearning = () => {
   const { courseId } = useParams();
@@ -10,12 +12,8 @@ const CourseLearning = () => {
   // 1. fetch sections
   useEffect(() => {
     const fetchSections = async () => {
-      const res = await fetch(
-        `http://localhost:5000/api/v1/sections/course/${courseId}`
-      );
-
-      const data = await res.json();
-      setSections(data.data || []);
+      const data = await sectionService.getByCourse(courseId);
+      setSections(data);
     };
 
     fetchSections();
@@ -23,12 +21,8 @@ const CourseLearning = () => {
 
   // 2. load lessons for section
   const loadLessons = async (sectionId) => {
-    const res = await fetch(
-      `http://localhost:5000/api/v1/lessons/section/${sectionId}`
-    );
-
-    const data = await res.json();
-    setCurrentLesson(data.data?.[0] || null);
+    const data = await lessonService.getBySection(sectionId);
+    setCurrentLesson(data?.[0] || null);
   };
 
   return (

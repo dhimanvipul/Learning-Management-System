@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiClient from "../services/apiClient";
 import { useNavigate, Link } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import "./Auth.css";
@@ -36,8 +36,8 @@ function Signup() {
     }
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/signup",
+      const res = await apiClient.post(
+        "/auth/signup",
         {
           username: formData.username,
           email: formData.email,
@@ -53,7 +53,7 @@ function Signup() {
         navigate("/");
       }
     } catch (error) {
-      alert(error.response?.data?.message || "Signup Failed");
+      alert(error.friendlyMessage || "Signup Failed");
     }
   };
 

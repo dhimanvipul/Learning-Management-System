@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import sectionService from "../../services/sectionService";
 import lessonService from "../../services/lessonService";
 import assignmentService from "../../services/assignmentService";
+import enrollmentService from "../../services/enrollmentService";
 import Spinner from "../../components/Common/Spinner";
 import ErrorState from "../../components/Common/ErrorState";
 import { toast } from "react-toastify";
@@ -114,11 +115,7 @@ const LessonView = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       if (!user?._id) return toast.error("User not logged in");
 
-      const resEnroll = await fetch(
-        `http://localhost:5000/api/enrollments/student/${user._id}`
-      );
-      const enrollmentsRes = await resEnroll.json();
-      const enrollments = enrollmentsRes.data || [];
+      const enrollments = await enrollmentService.getStudentEnrollments(user._id);
 
       const enrollment = enrollments.find(
         (e) => e.courseId?._id === courseId
@@ -131,22 +128,13 @@ const LessonView = () => {
       // Increment progress by 10%, clamp at 100%
       const newProgress = Math.min((enrollment.progress || 0) + 10, 100);
 
-      const updateRes = await fetch(
-        "http://localhost:5000/api/v1/lessons/progress/update",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            enrollmentId: enrollment._id,
-            progress: newProgress,
-          }),
-        }
-      );
+      const updateRes = await lessonService.updateProgress({
+        enrollmentId: enrollment._id,
+        progress: newProgress,
+      });
 
-      if (!updateRes.ok) {
-        throw new Error("Progress update failed");
+      if (!updateRes.success) {
+        throw new Error(updateRes.message || "Progress update failed");
       }
 
       toast.success(`Lesson Marked Complete! ✅ Progress: ${newProgress}%`);

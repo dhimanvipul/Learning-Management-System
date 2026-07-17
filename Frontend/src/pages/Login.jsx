@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiClient from "../services/apiClient";
 import { useNavigate, Link } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import "./Auth.css";
@@ -38,8 +38,8 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/login",
+      const res = await apiClient.post(
+        "/auth/login",
         formData
       );
 
@@ -60,7 +60,7 @@ function Login() {
         }
       }
     } catch (error) {
-      alert(error.response?.data?.message || "Login Failed");
+      alert(error.friendlyMessage || "Login Failed");
     }
   };
 
@@ -71,8 +71,8 @@ function Login() {
 
     setSubmittingForgot(true);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/send-password-otp",
+      const res = await apiClient.post(
+        "/auth/send-password-otp",
         { email: forgotEmail }
       );
       if (res.data.success) {
@@ -80,7 +80,7 @@ function Login() {
         setForgotStep(2);
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to send OTP. Verify your email.");
+      alert(err.friendlyMessage || "Failed to send OTP. Verify your email.");
     } finally {
       setSubmittingForgot(false);
     }
@@ -92,8 +92,8 @@ function Login() {
 
     setSubmittingForgot(true);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/verify-password-otp",
+      const res = await apiClient.post(
+        "/auth/verify-password-otp",
         { email: forgotEmail, otp: forgotOtp }
       );
       if (res.data.success) {
@@ -101,7 +101,7 @@ function Login() {
         setForgotStep(3);
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Invalid or expired OTP.");
+      alert(err.friendlyMessage || "Invalid or expired OTP.");
     } finally {
       setSubmittingForgot(false);
     }
@@ -114,8 +114,8 @@ function Login() {
 
     setSubmittingForgot(true);
     try {
-      const res = await axios.put(
-        "http://localhost:5000/api/v1/auth/change-password",
+      const res = await apiClient.put(
+        "/auth/change-password",
         { email: forgotEmail, otp: forgotOtp, newPassword }
       );
       if (res.data.success) {
@@ -128,7 +128,7 @@ function Login() {
         setNewPasswordConfirm("");
       }
     } catch (err) {
-      alert(err.response?.data?.message || "Failed to reset password.");
+      alert(err.friendlyMessage || "Failed to reset password.");
     } finally {
       setSubmittingForgot(false);
     }

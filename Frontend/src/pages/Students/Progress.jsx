@@ -5,6 +5,7 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 import StatCard from "../../components/Cards/StatCard";
+import enrollmentService from "../../services/enrollmentService";
 import "../Dashboard/Dashboard.css";
 
 const Progress = () => {
@@ -20,13 +21,7 @@ const Progress = () => {
 
         if (!user?._id) return;
 
-        const res = await fetch(
-          `http://localhost:5000/api/v1/enrollments/student/${user._id}`
-        );
-
-        const result = await res.json();
-
-        const data = result.data || [];
+        const data = await enrollmentService.getStudentEnrollments(user._id);
 
         setCourses(data);
 
